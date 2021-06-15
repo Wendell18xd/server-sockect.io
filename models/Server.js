@@ -23,7 +23,7 @@ class Server {
     //Desplegar el directorio publico
     this.app.use(express.static("public"));
     //CORS
-    this.server.use(cors());
+    this.app.use(cors());
   }
 
   configurarSockets() {
