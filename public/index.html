@@ -13,10 +13,10 @@
     <title>Mini chat</title>
   </head>
   <body class="container">
-    <h1 class="mt-5">Mini Chat</h1>
+    <h1 class="mt-5">Acceso Denegado</h1>
     <hr />
 
-    <form id="miFormulario">
+    <!-- <form id="miFormulario">
       <div class="row">
         <div class="col-8">
           <input
@@ -36,7 +36,7 @@
       <div class="col">
         <ul id="misMensajes" class="mt-2"></ul>
       </div>
-    </div>
+    </div> -->
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"
@@ -46,35 +46,34 @@
     ></script>
 
     <script>
-      const socket = io("https://react-socket-server18.herokuapp.com/");
-
-      //Referencias al html
-      const formulario = document.querySelector("#miFormulario");
-      const mensajes = document.querySelector("#misMensajes");
-      const txtMensaje = document.querySelector("#txtMensaje");
-
-      formulario.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const nuevoMensaje = txtMensaje.value;
-
-        socket.emit("mensaje-to-server", { text: nuevoMensaje });
-      });
+      const socket = io("http://localhost:8080");
 
       socket.on("mensaje-from-serve", (data) => {
-        mensajes.innerHTML += `<li>${data.text}</li>`;
+        //callback a ejecutar
       });
+      //Referencias al html
+      // const formulario = document.querySelector("#miFormulario");
+      // const mensajes = document.querySelector("#misMensajes");
+      // const txtMensaje = document.querySelector("#txtMensaje");
+
+      // formulario.addEventListener("submit", (e) => {
+      //   e.preventDefault();
+
+      //   const nuevoMensaje = txtMensaje.value;
+
+      //   socket.emit("mensaje-to-server", { text: nuevoMensaje });
+      // });
 
       // socket.on("mensaje-bienvenida", (data) => {
       //   console.log(data);
       // });
 
-      setTimeout(() => {
-        socket.emit("mensaje-cliente", {
-          msg: "Cliente",
-          nombre: "Wendell",
-        });
-      }, 2000);
+      // setTimeout(() => {
+      //   socket.emit("mensaje-cliente", {
+      //     msg: "Cliente",
+      //     nombre: "Wendell",
+      //   });
+      // }, 2000);
     </script>
   </body>
 </html>
